@@ -9,7 +9,7 @@ public class BoardFactory {
     // end::createBoard[]
 }
 
-internal class BoardCreator{
+internal class BoardCreator {
 
     private Board _board;
     public BoardCreator(Square[][] grid)
@@ -18,14 +18,12 @@ internal class BoardCreator{
     }
     public Board create(){
 
-        int width = _board.getWidth();
-        int height = _board.getHeight();
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
+        for (int x = 0; x < _board.getWidth();; x++) {
+            for (int y = 0; y < _board.getHeight(); y++) {
                 Square square = grid[x][y];
                 for (Direction dir : Direction.values()) {
-                    int dirX = (width + x + dir.getDeltaX()) % width;
-                    int dirY = (height + y + dir.getDeltaY()) % height;
+                    int dirX = (_board.getWidth() + x + dir.getDeltaX()) % width;
+                    int dirY = (_board.getHeight() + y + dir.getDeltaY()) % height;
                     Square neighbour = grid[dirX][dirY];
                     square.link(neighbour, dir);
                 }
