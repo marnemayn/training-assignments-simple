@@ -4,18 +4,22 @@ public class BoardFactory {
     // tag::createBoard[]
     public Board createBoard(Square[][] grid) {
         assert grid != null;
-        return new BoardCreator().create(grid);
+        return new BoardCreator(grid).create();
     }
     // end::createBoard[]
 }
 
 internal class BoardCreator{
 
-    public Board create(Square[][] grid){
-        Board board = new Board(grid);
+    private Board _board;
+    public BoardCreator(Square[][] grid)
+    {
+        _board = new Board(grid);
+    }
+    public Board create(){
 
-        int width = board.getWidth();
-        int height = board.getHeight();
+        int width = _board.getWidth();
+        int height = _board.getHeight();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 Square square = grid[x][y];
